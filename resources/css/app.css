@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+    --color-ink: #000000;
+    --color-panel: #1c1c20;
+    --color-coral: #ff4d6d;
+    --color-peach: #f7a7af;
+    --color-blush: #f3d9de;
+    --color-mute: #c9b8bc;
+    --color-deep: #2a0510;
+    --color-rose: #df3154;
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-peach);
+    outline-offset: 3px;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+:root[data-theme="light"] {
+    --color-ink: #f6f4f5;
+    --color-panel: #ffffff;
+    --color-coral: #df3154;
+    --color-peach: #a52b45;
+    --color-blush: #42363a;
+    --color-mute: #6c5e63;
+    --color-deep: #ffffff;
+    --portrait-shadow: 0 18px 60px rgb(223 49 84 / 16%);
+    --portrait-shadow-strong: 0 24px 80px rgb(223 49 84 / 32%);
+    color-scheme: light;
+}
+
+:root[data-theme="light"] body {
+    color: #211a1d;
+}
+
+:root[data-theme="light"] .text-white {
+    color: #211a1d;
+}
+
+:root[data-theme="light"] .delete-action {
+    color: #fff;
+}
+
+:root[data-theme="light"] [class*="border-white/"] {
+    border-color: rgb(33 26 29 / 12%);
+}
+
+:root[data-theme="light"] [class*="bg-white/"] {
+    background-color: rgb(33 26 29 / 6%);
+}
+
+:root[data-theme="light"] [class~="hover:text-white"]:hover {
+    color: #211a1d;
+}
+
+.hero-portrait-frame {
+    box-shadow: var(--portrait-shadow, 0 18px 60px rgb(255 77 109 / 24%));
+    animation: portrait-shadow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes portrait-shadow-pulse {
+    0%, 100% { box-shadow: var(--portrait-shadow, 0 18px 60px rgb(255 77 109 / 24%)); }
+    50% { box-shadow: var(--portrait-shadow-strong, 0 24px 80px rgb(255 77 109 / 42%)); }
+}
+
+.nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 0.5rem;
+    background-color: var(--color-coral);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1), width 350ms cubic-bezier(0.22, 1, 0.36, 1), height 350ms cubic-bezier(0.22, 1, 0.36, 1), opacity 150ms ease;
+}
+
+.nav-indicator.is-visible {
+    opacity: 1;
+}
+
+.nav-link {
+    position: relative;
+    z-index: 1;
+}
+
+.image-file-input::file-selector-button {
+    margin: -0.625rem 0.75rem -0.625rem -1rem;
+    padding: 0.625rem 0.75rem 0.625rem 2rem;
+    border: 0;
+    border-right: 1px solid rgb(255 255 255 / 30%);
+    background-color: rgb(255 255 255 / 10%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f7a7af' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpath d='M3 10h18'/%3E%3C/svg%3E");
+    background-position: 0.625rem center;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.image-file-input::file-selector-button:hover {
+    background-color: rgb(255 255 255 / 20%);
+}
+
+.date-completed-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.theme-toggle-icon {
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.theme-icon-sun {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-icon-sun {
+    display: block;
+}
+
+:root[data-theme="light"] .theme-icon-moon {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    body, body * { transition: none !important; }
+    .nav-indicator, .theme-toggle-icon, .hero-portrait-frame { animation: none; transition: none; }
+    ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
