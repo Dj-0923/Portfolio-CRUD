@@ -14,6 +14,9 @@ export default function ProjectCard({ project }) {
                 <span className="block p-5">
                     <span className="block font-sans text-xs font-bold uppercase tracking-widest text-coral">{project.category.name}</span>
                     <span role="heading" aria-level="3" className="mt-1 block text-lg font-extrabold">{project.title}</span>
+                    {project.role && (
+                        <p className="mt-1 text-sm text-peach">My role: {project.role}</p>
+                     )}
                     <span className="mt-2 block text-sm leading-relaxed text-blush">{project.description}</span>
                     <span className="mt-3 block text-xs font-bold text-mute">Click to manage this project</span>
                     <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tools used">

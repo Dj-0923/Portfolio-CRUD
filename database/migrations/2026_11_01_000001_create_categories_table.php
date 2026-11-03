@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30)->unique(); // created by the user, never hard-coded
+            $table->string('name', 30)->unique(); 
             $table->timestamps();
         });
     }

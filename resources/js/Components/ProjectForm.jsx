@@ -19,6 +19,7 @@ export default function ProjectForm({ project = null, categories }) {
         project_url: project?.project_url ?? '',
         repository_url: project?.repository_url ?? '',
         date_completed: project?.date_completed ?? '',
+        role: project?.role ?? '',
         image: null,
     });
     const { data, setData, errors, processing } = form;
@@ -40,6 +41,9 @@ export default function ProjectForm({ project = null, categories }) {
 
     return (
         <form onSubmit={submit} encType="multipart/form-data" noValidate className="grid gap-x-6 gap-y-4 rounded-2xl border border-white/10 bg-panel p-6 sm:grid-cols-2 sm:p-8">
+            <FormField id="role" label="My Role" error={errors.role}>
+                <input id="role" type="text" maxLength="80" required value={data.role} onChange={(event) => setData('role', event.target.value)} placeholder="e.g. UI/UX Designer" aria-describedby="role-error" className={inputClass(errors.role)} />
+            </FormField>
             <FormField id="title" label="Title" error={errors.title} className="sm:col-span-2">
                 <input id="title" type="text" maxLength="60" required value={data.title} onChange={(event) => setData('title', event.target.value)} placeholder="e.g. Figma - Lendy Prototype" aria-describedby="title-error" className={inputClass(errors.title)} />
             </FormField>

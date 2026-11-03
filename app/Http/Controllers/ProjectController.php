@@ -44,7 +44,7 @@ class ProjectController extends Controller
         try {
             DB::transaction(function () use ($data, $imagePath): void {
                 Project::create([
-                    ...Arr::only($data, ['title', 'description', 'tools', 'project_url', 'repository_url', 'date_completed']),
+                    ...Arr::only($data, ['title', 'description', 'tools', 'project_url', 'repository_url', 'date_completed', 'role']),
                     'category_id' => $this->resolveCategoryId($data),
                     'image' => $imagePath,
                 ]);
@@ -135,6 +135,7 @@ class ProjectController extends Controller
             'project_url' => ['nullable', 'url', 'max:255'],
             'repository_url' => ['nullable', 'url', 'max:255'],
             'date_completed' => ['required', 'date', 'before_or_equal:today'],
+            'role' => ['required', 'string', 'max:80'],
             'image' => [$project ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
-    // Only these columns can be mass-assigned (Project::create / ->update).
+
     protected $fillable = [
         'category_id',
         'title',
@@ -18,9 +18,9 @@ class Project extends Model
         'repository_url',
         'image',
         'date_completed',
+        'role',
     ];
 
-    // Sent to React together with the normal columns.
     protected $appends = ['image_url'];
 
     protected function casts(): array
@@ -33,7 +33,7 @@ class Project extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // /storage/projects/xxxx.png (needs: php artisan storage:link)
+
     protected function imageUrl(): Attribute
     {
         return Attribute::get(fn () => '/storage/'.$this->image);
